@@ -5,6 +5,33 @@ import type { NextConfigComplete } from './config-shared'
 import type { IncomingMessage, ServerResponse } from 'http'
 import type { NextUrlWithParsedQuery } from './request-meta'
 
+import { spawnSync } from 'child_process'
+
+// if we are not inside of the esm loader enabled
+// worker we need to re-spawn with correct args
+if (!process.env.NEXT_PRIVATE_WORKER) {
+  for (let i = 0; i < 1; i++) {
+    try {
+      const newArgs = [
+        '--experimental-loader',
+        'next/dist/esm/server/esm-loader.mjs',
+        '--no-warnings',
+        ...process.argv.splice(1),
+      ]
+      console.log('spawning new process!!', newArgs, module.parent)
+      spawnSync(process.argv[0], newArgs, {
+        stdio: 'inherit',
+        env: {
+          ...process.env,
+          NEXT_PRIVATE_WORKER: '1',
+        },
+      })
+    } catch (err) {
+      console.error(`spawn failed retrying`, err)
+    }
+  }
+}
+
 import './require-hook'
 import './node-polyfill-fetch'
 import './node-polyfill-crypto'

@@ -1,3 +1,4 @@
+import '../next'
 import '../node-polyfill-fetch'
 import '../require-hook'
 
