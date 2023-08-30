@@ -112,7 +112,7 @@ impl Fold for OptimizeBarrel {
                                                         )],
                                                         src: export_named.src.clone(),
                                                         type_only: false,
-                                                        asserts: None,
+                                                        with: None,
                                                     }),
                                                 ));
                                             }
@@ -136,7 +136,7 @@ impl Fold for OptimizeBarrel {
                                                         )],
                                                         src: export_named.src.clone(),
                                                         type_only: false,
-                                                        asserts: None,
+                                                        with: None,
                                                     }),
                                                 ));
                                             }
@@ -168,7 +168,7 @@ impl Fold for OptimizeBarrel {
                                                     )],
                                                     src: import_decl.src.clone(),
                                                     type_only: false,
-                                                    asserts: None,
+                                                    with: None,
                                                 }),
                                             ));
                                         }
@@ -186,7 +186,7 @@ impl Fold for OptimizeBarrel {
                                                     )],
                                                     src: import_decl.src.clone(),
                                                     type_only: false,
-                                                    asserts: None,
+                                                    with: None,
                                                 }),
                                             ));
                                         }
@@ -204,7 +204,7 @@ impl Fold for OptimizeBarrel {
                                                     )],
                                                     src: import_decl.src.clone(),
                                                     type_only: false,
-                                                    asserts: None,
+                                                    with: None,
                                                 }),
                                             ));
                                         }
@@ -258,7 +258,7 @@ impl Fold for OptimizeBarrel {
                         .collect(),
                     src: Some(Box::new(quote_str!(self.filepath.to_string()))),
                     type_only: false,
-                    asserts: None,
+                    with: None,
                 },
             ))];
         }
